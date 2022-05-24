@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CIRCULR NAV</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="./css/nav.css">
+    <script src="https://cdn.jsdelivr.net/npm/circular-revealer@0.0.8/dist/index.iife.js"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <!-- TweenMax - GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenMax.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/project2.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <button class="header__button nav-btn-js" type="button"></button>
+            <nav class="header__nav nav-js" data-active="false">
+                <div class="menu">
+                    <ul class="menu--wrapper">
+                        <li class="menu--item"><button href="#">Home</button></li>
+                        <li class="menu--item"><button href="#">Projects</button></li>
+                        <li class="menu--item"><button href="#">About</button></li>
+                        <li class="menu--item"><button href="#">Publications</button></li>
+                        <li class="menu--item"><button href="#">Workshop</button></li>
+                        <li class="menu--item"><button href="#">Shop</button></li>
+                        <li class="menu--item"><button href="#">Media Kit</button></li>
+                        <li class="menu--item"><button href="#">Contact</button></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="smooth-scroll-wrapper">
+        <div class="content">
+            <div class="container">
+                <div class="image-container">
+                    <h2 class="text text-dark">
+                        <span class="parallax-title">
+                            we live in the details
+                        </span>
+                    </h2>
+                </div>
+
+                <h2 class="text">
+                    <span class="parallax-title">
+                        we live in the details
+                    </span>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        let atScroll = false;
+        let parallaxTitle = document.querySelectorAll(".parallax-title");
+
+        const scrollProgress = () => {
+            atScroll = true;
+        };
+
+        const raf = () => {
+            if (atScroll) {
+                parallaxTitle.forEach((element, index) => {
+                    element.style.transform = "translateX(" + window.scrollY / 8 + "%)";
+                });
+                atScroll = false;
+            }
+            requestAnimationFrame(raf);
+        };
+
+        requestAnimationFrame(raf);
+        window.addEventListener("scroll", scrollProgress);
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealerNav = window.revealer({
+                revealElementSelector: ".nav-js",
+                options: {
+                    anchorSelector: ".nav-btn-js",
+                },
+            });
+
+            const actionBtn = document.querySelector(".nav-btn-js");
+            actionBtn.addEventListener("click", () => {
+                if (!revealerNav.isRevealed()) {
+                    revealerNav.reveal();
+                    actionBtn.setAttribute("data-open", true);
+                } else {
+                    revealerNav.hide();
+                    actionBtn.setAttribute("data-open", false);
+                }
+            });
+        });
+    </script>
+    <div class="navigation-wrapper">
+        <div class="project-preview-wrapper">
+            <div class="project-preview"></div>
+        </div>
+        <ul class="navigation-list">
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-1" href="#">
+                    <span class='span' class="revealScroll" data-text="Mouthwash">Mouthwash</span>
+                </a>
+            </li>
+            <div class="project-overlay"></div>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-2" href="#">
+                    <span class='span' class="revealScroll" class=".show" data-text="Offbeat">Offbeat</span>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-3" href="#">
+                    <span class='span' class="revealScroll" class=".show" data-text="Expansions">Expansions</span>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-4" href="#">
+                    <span class='span' class='revealScroll' class=".show" data-text="Canals">Canals</span>
+                </a>
+            </li>
+            <li>
+
+            </li>
+        </ul>
+    </div>
+
+
+
+    <script>
+        $(document).ready(function () {
+            TweenMax.set(".project-preview", {
+                width: 0
+            });
+
+            var tl = new TimelineLite();
+
+            $(document)
+                .on("mouseover", ".navigation-item", function (evt) {
+                    tl = new TimelineLite();
+                    tl.to($(".project-preview"), 1, {
+                        width: "600px",
+                        ease: Expo.easeInOut
+                    });
+                })
+                .on("mouseout", ".navigation-item", function (evt) {
+                    tl = new TimelineLite();
+                    tl.to($(".project-preview"), 0.5, {
+                        width: 0,
+                        ease: Expo.easeInOut
+                    });
+                });
+        });
+
+        $(".navigation-link-1").hover(function () {
+            $(".project-preview").css({
+                "background-image": "url(./images/seven.jpg)"
+            });
+        });
+
+        $(".navigation-link-2").hover(function () {
+            $(".project-preview").css({
+                "background-image": "url(./images/two.jpg)"
+            });
+        });
+
+        $(".navigation-link-3").hover(function () {
+            $(".project-preview").css({
+                "background-image": "url(./images/three.jpg)"
+            });
+        });
+
+        $(".navigation-link-4").hover(function () {
+            $(".project-preview").css({
+                "background-image": "url(./images/four.jpg)"
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        const reveal = gsap.utils.toArray('.revealScroll');
+        reveal.forEach((text, i) => {
+            ScrollTrigger.create({
+                trigger: text,
+                toggleClass: 'active',
+                start: "top 90%",
+                end: "top 5%",
+            })
+        })
+
+        const images = gsap.utils.toArray('img');
+        images.forEach((img, i) => {
+            ScrollTrigger.create({
+                trigger: img,
+                toggleClass: 'active',
+                start: "top 90%",
+                end: "top 20%",
+            })
+        })
+    </script>
+
+    <script src="./js/app.js"></script>
+</body>
+
+</html>

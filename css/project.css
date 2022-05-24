@@ -1,0 +1,154 @@
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.progressbar {
+  position: fixed;
+  top: 0;
+  left: 85%;
+  background: rgba(255, 255, 255, 0.4);
+  width: 1px;
+  z-index: 1;
+}
+
+.navigation-wrapper ul {
+  margin-top: 240px;
+  margin-left: 100px;
+  margin-bottom: 200px;
+  list-style: none;
+  position: absolute;
+}
+
+.navigation-item {
+  display: block;
+  user-select: none;
+  margin: 120px 0;
+}
+
+a {
+  font-family: "Cosi Azure";
+  font-size: 100px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+span {
+  position: relative;
+  display: block;
+}
+
+.navigation-item span:before {
+  width: 0;
+  color: #ffffff;
+  overflow: hidden;
+  position: absolute;
+  content: attr(data-text);
+  transition: all 1s cubic-bezier(0.84, 0, 0.08, 0.99);
+}
+
+.navigation-item span:hover:before {
+  width: 100%;
+}
+
+.project-preview-wrapper {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+}
+
+.project-preview {
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  width: 0px;
+  height: 400px;
+  background: url(img-1.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .progressbar,
+  .project-preview-wrapper {
+    display: none;
+  }
+
+  a {
+    font-size: 24px;
+  }
+}
+
+/* */
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .revealScroll {
+  position: relative;
+  color: #fff;
+  font-size: 1.75rem;
+  padding: 0 10px;
+  font-weight: 500;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: 0.5s;
+  transition-delay: 0.5s;
+}
+
+body .revealScroll.active {
+  transform: scaleX(1);
+  transition-delay: 0s;
+}
+
+body .revealScroll:nth-child(2) {
+  font-weight: 300;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+body .revealScroll:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: right;
+  transition: 0.5s;
+  background: #e02bff;
+
+  transition-delay: 0s;
+}
+
+body .revealScroll:nth-child(2):before {
+  background: #ffeb3b;
+}
+
+body .revealScroll.active:before {
+  transform: scaleX(0);
+  transition-delay: 0.5s;
+}
+
+body img {
+  position: relative;
+  display: block;
+  margin: 20px 0 0 10px;
+  max-width: 300px;
+  opacity: 0;
+  transition: 0.5s;
+  left: -100px;
+}
+
+body img.active {
+  opacity: 1;
+  left: 0;
+}
